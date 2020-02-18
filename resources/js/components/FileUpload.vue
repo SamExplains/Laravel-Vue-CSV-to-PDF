@@ -1,0 +1,97 @@
+<template>
+    <div class="container">
+        <div class="row">
+            <div class="col-5 text-center">
+                <el-upload
+                    class="upload-demo"
+                    action="/upload"
+                    name="file_upload"
+                    :data="{_token: csrf}"
+                    :on-preview="handlePreview"
+                    :on-remove="handleRemove"
+                    :on-change="handleChange"
+                    :on-success="handleSuccess"
+                    :file-list="fileList"
+                    list-type="picture">
+                    <el-button size="small" type="primary">Click to upload</el-button>
+                    <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
+                </el-upload>
+            </div>
+            <div class="col-7">
+                <el-alert v-show="errors.success"
+                    title="Success! Your file has been uploaded. Use the Template tab to work with your files."
+                    type="success">
+                </el-alert>
+                <el-alert v-show="errors.error"
+                    title="Error! Your item could not be uploaded. Try again."
+                    type="error">
+                </el-alert>
+                <el-alert
+                    v-show="errors.invalid"
+                    title="Invalid file type uploaded."
+                    type="warning">
+                </el-alert>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<script>
+import axios from "axios";
+  export default {
+    name: "FileUpload",
+    props: {
+      _t: String
+    },
+    mounted(){
+      console.warn(typeof this._t, ' ------ ', this._t);
+    },
+    data(){
+      return {
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        fileList: [],
+        file: '',
+        errors: {
+          success: '',
+          invalid: '',
+          error: ''
+        }
+      }
+    },
+    methods: {
+      handlePreview(file) {
+        console.log(this.fileList)
+      },
+      handleRemove() {
+        console.log('handleRemove')
+      },
+      handleChange(file) {
+        console.log('handleChange', file);
+      },
+      handleSuccess(res) {
+        console.log('handleSuccess');
+        console.log(res);
+        switch (res.status) {
+          case 201:
+            console.log(res.data.filename);
+            console.log(res.data.url);
+            this.errors.success = res.status === 201;
+            break;
+          case 400:
+            this.errors.invalid = res.status === 400;
+            break;
+          case 500:
+            this.errors.error = res.status === 500;
+              break;
+
+        }
+
+      }
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
