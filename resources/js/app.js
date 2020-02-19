@@ -3,6 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 require('./bootstrap');
 window.Vue = require('vue');
 
@@ -30,6 +31,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 /* Add the ELement UI Library*/
 Vue.use(ElementUI);
 
+import store from "./store";
 const app = new Vue({
+    store,
     el: '#app',
 });

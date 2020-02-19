@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/async-validator/es/index.js":
 /*!**************************************************!*\
   !*** ./node_modules/async-validator/es/index.js ***!
@@ -3555,6 +3567,265 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FileUpload.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FileUpload.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "FileUpload",
+  props: {
+    _t: String
+  },
+  mounted: function mounted() {
+    console.warn(_typeof(this._t), ' ------ ', this._t);
+  },
+  data: function data() {
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      fileList: [],
+      file: '',
+      errors: {
+        success: '',
+        invalid: '',
+        error: ''
+      }
+    };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['storeNewFileDetails']), {
+    handlePreview: function handlePreview(file) {
+      console.log(this.fileList);
+    },
+    handleRemove: function handleRemove() {
+      console.log('handleRemove');
+    },
+    handleChange: function handleChange(file) {
+      console.log('handleChange', file);
+    },
+    handleSuccess: function handleSuccess(res) {
+      console.log('handleSuccess');
+      console.log(res);
+
+      switch (res.status) {
+        case 201:
+          /*
+          * Store filename and file URL inside store for Templates page
+          * */
+          console.log(res.data.filename);
+          console.log(res.data.url);
+          this.storeNewFileDetails({
+            filename: res.data.filename,
+            url: res.data.url
+          });
+          this.errors.success = res.status === 201;
+          break;
+
+        case 400:
+          this.errors.invalid = res.status === 400;
+          break;
+
+        case 500:
+          this.errors.error = res.status === 500;
+          break;
+      }
+    }
+  })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Templates.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Templates.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var papaparse__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! papaparse */ "./node_modules/papaparse/papaparse.min.js");
+/* harmony import */ var papaparse__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(papaparse__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Templates",
+  data: function data() {
+    return {
+      // csvUrl: 'https://shiftdownbucket.s3-us-west-1.amazonaws.com/cvsreader/event-parser-demo.csv',
+      // csvUrl: 'https://vue-cvs.dev/_uploads/event-parser-demo.csv',
+      csvUrl: null,
+      csvData: null,
+      storedFileUrls: null,
+      meta: {
+        success: false,
+        total: 0
+      }
+    };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(['queueCsvTemplateFiles']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['returnAllStoredCsvUploadUrls']), {
+    hasCommand: function hasCommand(command) {
+      /*
+      * Update csv url
+      * Download and parse file
+      * Generate live file template
+      * Display generated live template
+      * */
+      console.warn('hasCommand ', command);
+      this.parseCsvFile(command);
+    },
+    parseCsvFile: function parseCsvFile(_url) {
+      var that = this;
+      papaparse__WEBPACK_IMPORTED_MODULE_1___default.a.parse(_url, {
+        download: true,
+        complete: function complete(results) {
+          console.log(results.errors);
+          console.log(results.data);
+          results.data.shift(); // Remove first element which is the header fields.
+
+          /* TODO Convert the array to an Array of Objects */
+
+          that.meta.total = results.data.length;
+          that.meta.success = true;
+          that.csvData = results.data;
+        }
+      });
+    }
+  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['returnIntro'])),
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.queueCsvTemplateFiles();
+
+            case 2:
+              console.log('OK to retrieve');
+              _this.storedFileUrls = _this.returnAllStoredCsvUploadUrls();
+              console.log('Stored File URLS', _this.storedFileUrls);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -66715,6 +66986,139 @@ module.exports = deepmerge_1;
 
 /***/ }),
 
+/***/ "./node_modules/element-ui/src/locale/lang/el.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/element-ui/src/locale/lang/el.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  el: {
+    colorpicker: {
+      confirm: 'Εντάξει',
+      clear: 'Καθαρισμός'
+    },
+    datepicker: {
+      now: 'Τώρα',
+      today: 'Σήμερα',
+      cancel: 'Ακύρωση',
+      clear: 'Καθαρισμός',
+      confirm: 'Εντάξει',
+      selectDate: 'Επιλέξτε ημέρα',
+      selectTime: 'Επιλέξτε ώρα',
+      startDate: 'Ημερομηνία Έναρξης',
+      startTime: 'Ωρα Έναρξης',
+      endDate: 'Ημερομηνία Λήξης',
+      endTime: 'Ωρα Λήξης',
+      prevYear: 'Προηγούμενο Έτος',
+      nextYear: 'Επόμενο Έτος',
+      prevMonth: 'Προηγούμενος Μήνας',
+      nextMonth: 'Επόμενος Μήνας',
+      year: 'Έτος',
+      month1: 'Ιανουάριος',
+      month2: 'Φεβρουάριος',
+      month3: 'Μάρτιος',
+      month4: 'Απρίλιος',
+      month5: 'Μάιος',
+      month6: 'Ιούνιος',
+      month7: 'Ιούλιος',
+      month8: 'Αύγουστος',
+      month9: 'Σεπτέμβριος',
+      month10: 'Οκτώβριος',
+      month11: 'Νοέμβριος',
+      month12: 'Δεκέμβριος',
+      // week: 'εβδομάδα',
+      weeks: {
+        sun: 'Κυρ',
+        mon: 'Δευ',
+        tue: 'Τρι',
+        wed: 'Τετ',
+        thu: 'Πεμ',
+        fri: 'Παρ',
+        sat: 'Σαβ'
+      },
+      months: {
+        jan: 'Ιαν',
+        feb: 'Φεβ',
+        mar: 'Μαρ',
+        apr: 'Απρ',
+        may: 'Μαϊ',
+        jun: 'Ιουν',
+        jul: 'Ιουλ',
+        aug: 'Αυγ',
+        sep: 'Σεπ',
+        oct: 'Οκτ',
+        nov: 'Νοε',
+        dec: 'Δεκ'
+      }
+    },
+    select: {
+      loading: 'Φόρτωση',
+      noMatch: 'Δεν βρέθηκαν αποτελέσματα',
+      noData: 'Χωρίς δεδομένα',
+      placeholder: 'Επιλογή'
+    },
+    cascader: {
+      noMatch: 'Δεν βρέθηκαν αποτελέσματα',
+      loading: 'Φόρτωση',
+      placeholder: 'Επιλογή',
+      noData: 'Χωρίς δεδομένα'
+    },
+    pagination: {
+      goto: 'Μετάβαση σε',
+      pagesize: '/σελίδα',
+      total: 'Σύνολο {total}',
+      pageClassifier: ''
+    },
+    messagebox: {
+      title: 'Μήνυμα',
+      confirm: 'Εντάξει',
+      cancel: 'Ακύρωση',
+      error: 'Άκυρη εισαγωγή'
+    },
+    upload: {
+      deleteTip: 'Πάτησε Διαγραφή για αφαίρεση',
+      delete: 'Διαγραφή',
+      preview: 'Προεπισκόπηση',
+      continue: 'Συνέχεια'
+    },
+    table: {
+      emptyText: 'Χωρίς Δεδομένα',
+      confirmFilter: 'Επιβεβαίωση',
+      resetFilter: 'Επαναφορά',
+      clearFilter: 'Όλα',
+      sumText: 'Σύνολο'
+    },
+    tree: {
+      emptyText: 'Χωρίς Δεδομένα'
+    },
+    transfer: {
+      noMatch: 'Δεν βρέθηκαν αποτελέσματα',
+      noData: 'Χωρίς δεδομένα',
+      titles: ['Λίστα 1', 'Λίστα 2'],
+      filterPlaceholder: 'Αναζήτηση',
+      noCheckedFormat: '{total} Αντικείμενα',
+      hasCheckedFormat: '{checked}/{total} επιλεγμένα'
+    },
+    image: {
+      error: 'FAILED' // to be translated
+    },
+    pageHeader: {
+      title: 'Back' // to be translated
+    },
+    popconfirm: {
+      confirmButtonText: 'Yes', // to be translated
+      cancelButtonText: 'No' // to be translated
+    }
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -95069,6 +95473,26 @@ module.exports = normalizeWheel;
 
 /***/ }),
 
+/***/ "./node_modules/papaparse/papaparse.min.js":
+/*!*************************************************!*\
+  !*** ./node_modules/papaparse/papaparse.min.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* @license
+Papa Parse
+v5.1.1
+https://github.com/mholt/PapaParse
+License: MIT
+*/
+!function(e,t){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(this,function s(){"use strict";var f="undefined"!=typeof self?self:"undefined"!=typeof window?window:void 0!==f?f:{};var n=!f.document&&!!f.postMessage,o=n&&/blob:/i.test((f.location||{}).protocol),a={},h=0,b={parse:function(e,t){var i=(t=t||{}).dynamicTyping||!1;q(i)&&(t.dynamicTypingFunction=i,i={});if(t.dynamicTyping=i,t.transform=!!q(t.transform)&&t.transform,t.worker&&b.WORKERS_SUPPORTED){var r=function(){if(!b.WORKERS_SUPPORTED)return!1;var e=(i=f.URL||f.webkitURL||null,r=s.toString(),b.BLOB_URL||(b.BLOB_URL=i.createObjectURL(new Blob(["(",r,")();"],{type:"text/javascript"})))),t=new f.Worker(e);var i,r;return t.onmessage=m,t.id=h++,a[t.id]=t}();return r.userStep=t.step,r.userChunk=t.chunk,r.userComplete=t.complete,r.userError=t.error,t.step=q(t.step),t.chunk=q(t.chunk),t.complete=q(t.complete),t.error=q(t.error),delete t.worker,void r.postMessage({input:e,config:t,workerId:r.id})}var n=null;b.NODE_STREAM_INPUT,"string"==typeof e?n=t.download?new l(t):new p(t):!0===e.readable&&q(e.read)&&q(e.on)?n=new g(t):(f.File&&e instanceof File||e instanceof Object)&&(n=new c(t));return n.stream(e)},unparse:function(e,t){var n=!1,m=!0,_=",",v="\r\n",s='"',a=s+s,i=!1,r=null;!function(){if("object"!=typeof t)return;"string"!=typeof t.delimiter||b.BAD_DELIMITERS.filter(function(e){return-1!==t.delimiter.indexOf(e)}).length||(_=t.delimiter);("boolean"==typeof t.quotes||"function"==typeof t.quotes||Array.isArray(t.quotes))&&(n=t.quotes);"boolean"!=typeof t.skipEmptyLines&&"string"!=typeof t.skipEmptyLines||(i=t.skipEmptyLines);"string"==typeof t.newline&&(v=t.newline);"string"==typeof t.quoteChar&&(s=t.quoteChar);"boolean"==typeof t.header&&(m=t.header);if(Array.isArray(t.columns)){if(0===t.columns.length)throw new Error("Option columns is empty");r=t.columns}void 0!==t.escapeChar&&(a=t.escapeChar+s)}();var o=new RegExp(U(s),"g");"string"==typeof e&&(e=JSON.parse(e));if(Array.isArray(e)){if(!e.length||Array.isArray(e[0]))return u(null,e,i);if("object"==typeof e[0])return u(r||h(e[0]),e,i)}else if("object"==typeof e)return"string"==typeof e.data&&(e.data=JSON.parse(e.data)),Array.isArray(e.data)&&(e.fields||(e.fields=e.meta&&e.meta.fields),e.fields||(e.fields=Array.isArray(e.data[0])?e.fields:h(e.data[0])),Array.isArray(e.data[0])||"object"==typeof e.data[0]||(e.data=[e.data])),u(e.fields||[],e.data||[],i);throw new Error("Unable to serialize unrecognized input");function h(e){if("object"!=typeof e)return[];var t=[];for(var i in e)t.push(i);return t}function u(e,t,i){var r="";"string"==typeof e&&(e=JSON.parse(e)),"string"==typeof t&&(t=JSON.parse(t));var n=Array.isArray(e)&&0<e.length,s=!Array.isArray(t[0]);if(n&&m){for(var a=0;a<e.length;a++)0<a&&(r+=_),r+=y(e[a],a);0<t.length&&(r+=v)}for(var o=0;o<t.length;o++){var h=n?e.length:t[o].length,u=!1,f=n?0===Object.keys(t[o]).length:0===t[o].length;if(i&&!n&&(u="greedy"===i?""===t[o].join("").trim():1===t[o].length&&0===t[o][0].length),"greedy"===i&&n){for(var d=[],l=0;l<h;l++){var c=s?e[l]:l;d.push(t[o][c])}u=""===d.join("").trim()}if(!u){for(var p=0;p<h;p++){0<p&&!f&&(r+=_);var g=n&&s?e[p]:p;r+=y(t[o][g],p)}o<t.length-1&&(!i||0<h&&!f)&&(r+=v)}}return r}function y(e,t){if(null==e)return"";if(e.constructor===Date)return JSON.stringify(e).slice(1,25);var i=e.toString().replace(o,a),r="boolean"==typeof n&&n||"function"==typeof n&&n(e,t)||Array.isArray(n)&&n[t]||function(e,t){for(var i=0;i<t.length;i++)if(-1<e.indexOf(t[i]))return!0;return!1}(i,b.BAD_DELIMITERS)||-1<i.indexOf(_)||" "===i.charAt(0)||" "===i.charAt(i.length-1);return r?s+i+s:i}}};if(b.RECORD_SEP=String.fromCharCode(30),b.UNIT_SEP=String.fromCharCode(31),b.BYTE_ORDER_MARK="\ufeff",b.BAD_DELIMITERS=["\r","\n",'"',b.BYTE_ORDER_MARK],b.WORKERS_SUPPORTED=!n&&!!f.Worker,b.NODE_STREAM_INPUT=1,b.LocalChunkSize=10485760,b.RemoteChunkSize=5242880,b.DefaultDelimiter=",",b.Parser=E,b.ParserHandle=i,b.NetworkStreamer=l,b.FileStreamer=c,b.StringStreamer=p,b.ReadableStreamStreamer=g,f.jQuery){var d=f.jQuery;d.fn.parse=function(o){var i=o.config||{},h=[];return this.each(function(e){if(!("INPUT"===d(this).prop("tagName").toUpperCase()&&"file"===d(this).attr("type").toLowerCase()&&f.FileReader)||!this.files||0===this.files.length)return!0;for(var t=0;t<this.files.length;t++)h.push({file:this.files[t],inputElem:this,instanceConfig:d.extend({},i)})}),e(),this;function e(){if(0!==h.length){var e,t,i,r,n=h[0];if(q(o.before)){var s=o.before(n.file,n.inputElem);if("object"==typeof s){if("abort"===s.action)return e="AbortError",t=n.file,i=n.inputElem,r=s.reason,void(q(o.error)&&o.error({name:e},t,i,r));if("skip"===s.action)return void u();"object"==typeof s.config&&(n.instanceConfig=d.extend(n.instanceConfig,s.config))}else if("skip"===s)return void u()}var a=n.instanceConfig.complete;n.instanceConfig.complete=function(e){q(a)&&a(e,n.file,n.inputElem),u()},b.parse(n.file,n.instanceConfig)}else q(o.complete)&&o.complete()}function u(){h.splice(0,1),e()}}}function u(e){this._handle=null,this._finished=!1,this._completed=!1,this._halted=!1,this._input=null,this._baseIndex=0,this._partialLine="",this._rowCount=0,this._start=0,this._nextChunk=null,this.isFirstChunk=!0,this._completeResults={data:[],errors:[],meta:{}},function(e){var t=w(e);t.chunkSize=parseInt(t.chunkSize),e.step||e.chunk||(t.chunkSize=null);this._handle=new i(t),(this._handle.streamer=this)._config=t}.call(this,e),this.parseChunk=function(e,t){if(this.isFirstChunk&&q(this._config.beforeFirstChunk)){var i=this._config.beforeFirstChunk(e);void 0!==i&&(e=i)}this.isFirstChunk=!1,this._halted=!1;var r=this._partialLine+e;this._partialLine="";var n=this._handle.parse(r,this._baseIndex,!this._finished);if(!this._handle.paused()&&!this._handle.aborted()){var s=n.meta.cursor;this._finished||(this._partialLine=r.substring(s-this._baseIndex),this._baseIndex=s),n&&n.data&&(this._rowCount+=n.data.length);var a=this._finished||this._config.preview&&this._rowCount>=this._config.preview;if(o)f.postMessage({results:n,workerId:b.WORKER_ID,finished:a});else if(q(this._config.chunk)&&!t){if(this._config.chunk(n,this._handle),this._handle.paused()||this._handle.aborted())return void(this._halted=!0);n=void 0,this._completeResults=void 0}return this._config.step||this._config.chunk||(this._completeResults.data=this._completeResults.data.concat(n.data),this._completeResults.errors=this._completeResults.errors.concat(n.errors),this._completeResults.meta=n.meta),this._completed||!a||!q(this._config.complete)||n&&n.meta.aborted||(this._config.complete(this._completeResults,this._input),this._completed=!0),a||n&&n.meta.paused||this._nextChunk(),n}this._halted=!0},this._sendError=function(e){q(this._config.error)?this._config.error(e):o&&this._config.error&&f.postMessage({workerId:b.WORKER_ID,error:e,finished:!1})}}function l(e){var r;(e=e||{}).chunkSize||(e.chunkSize=b.RemoteChunkSize),u.call(this,e),this._nextChunk=n?function(){this._readChunk(),this._chunkLoaded()}:function(){this._readChunk()},this.stream=function(e){this._input=e,this._nextChunk()},this._readChunk=function(){if(this._finished)this._chunkLoaded();else{if(r=new XMLHttpRequest,this._config.withCredentials&&(r.withCredentials=this._config.withCredentials),n||(r.onload=y(this._chunkLoaded,this),r.onerror=y(this._chunkError,this)),r.open("GET",this._input,!n),this._config.downloadRequestHeaders){var e=this._config.downloadRequestHeaders;for(var t in e)r.setRequestHeader(t,e[t])}if(this._config.chunkSize){var i=this._start+this._config.chunkSize-1;r.setRequestHeader("Range","bytes="+this._start+"-"+i)}try{r.send()}catch(e){this._chunkError(e.message)}n&&0===r.status&&this._chunkError()}},this._chunkLoaded=function(){4===r.readyState&&(r.status<200||400<=r.status?this._chunkError():(this._start+=this._config.chunkSize?this._config.chunkSize:r.responseText.length,this._finished=!this._config.chunkSize||this._start>=function(e){var t=e.getResponseHeader("Content-Range");if(null===t)return-1;return parseInt(t.substring(t.lastIndexOf("/")+1))}(r),this.parseChunk(r.responseText)))},this._chunkError=function(e){var t=r.statusText||e;this._sendError(new Error(t))}}function c(e){var r,n;(e=e||{}).chunkSize||(e.chunkSize=b.LocalChunkSize),u.call(this,e);var s="undefined"!=typeof FileReader;this.stream=function(e){this._input=e,n=e.slice||e.webkitSlice||e.mozSlice,s?((r=new FileReader).onload=y(this._chunkLoaded,this),r.onerror=y(this._chunkError,this)):r=new FileReaderSync,this._nextChunk()},this._nextChunk=function(){this._finished||this._config.preview&&!(this._rowCount<this._config.preview)||this._readChunk()},this._readChunk=function(){var e=this._input;if(this._config.chunkSize){var t=Math.min(this._start+this._config.chunkSize,this._input.size);e=n.call(e,this._start,t)}var i=r.readAsText(e,this._config.encoding);s||this._chunkLoaded({target:{result:i}})},this._chunkLoaded=function(e){this._start+=this._config.chunkSize,this._finished=!this._config.chunkSize||this._start>=this._input.size,this.parseChunk(e.target.result)},this._chunkError=function(){this._sendError(r.error)}}function p(e){var i;u.call(this,e=e||{}),this.stream=function(e){return i=e,this._nextChunk()},this._nextChunk=function(){if(!this._finished){var e,t=this._config.chunkSize;return t?(e=i.substring(0,t),i=i.substring(t)):(e=i,i=""),this._finished=!i,this.parseChunk(e)}}}function g(e){u.call(this,e=e||{});var t=[],i=!0,r=!1;this.pause=function(){u.prototype.pause.apply(this,arguments),this._input.pause()},this.resume=function(){u.prototype.resume.apply(this,arguments),this._input.resume()},this.stream=function(e){this._input=e,this._input.on("data",this._streamData),this._input.on("end",this._streamEnd),this._input.on("error",this._streamError)},this._checkIsFinished=function(){r&&1===t.length&&(this._finished=!0)},this._nextChunk=function(){this._checkIsFinished(),t.length?this.parseChunk(t.shift()):i=!0},this._streamData=y(function(e){try{t.push("string"==typeof e?e:e.toString(this._config.encoding)),i&&(i=!1,this._checkIsFinished(),this.parseChunk(t.shift()))}catch(e){this._streamError(e)}},this),this._streamError=y(function(e){this._streamCleanUp(),this._sendError(e)},this),this._streamEnd=y(function(){this._streamCleanUp(),r=!0,this._streamData("")},this),this._streamCleanUp=y(function(){this._input.removeListener("data",this._streamData),this._input.removeListener("end",this._streamEnd),this._input.removeListener("error",this._streamError)},this)}function i(_){var a,o,h,r=Math.pow(2,53),n=-r,s=/^\s*-?(\d*\.?\d+|\d+\.?\d*)(e[-+]?\d+)?\s*$/i,u=/(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/,t=this,i=0,f=0,d=!1,e=!1,l=[],c={data:[],errors:[],meta:{}};if(q(_.step)){var p=_.step;_.step=function(e){if(c=e,m())g();else{if(g(),0===c.data.length)return;i+=e.data.length,_.preview&&i>_.preview?o.abort():(c.data=c.data[0],p(c,t))}}}function v(e){return"greedy"===_.skipEmptyLines?""===e.join("").trim():1===e.length&&0===e[0].length}function g(){if(c&&h&&(k("Delimiter","UndetectableDelimiter","Unable to auto-detect delimiting character; defaulted to '"+b.DefaultDelimiter+"'"),h=!1),_.skipEmptyLines)for(var e=0;e<c.data.length;e++)v(c.data[e])&&c.data.splice(e--,1);return m()&&function(){if(!c)return;function e(e){q(_.transformHeader)&&(e=_.transformHeader(e)),l.push(e)}if(Array.isArray(c.data[0])){for(var t=0;m()&&t<c.data.length;t++)c.data[t].forEach(e);c.data.splice(0,1)}else c.data.forEach(e)}(),function(){if(!c||!_.header&&!_.dynamicTyping&&!_.transform)return c;function e(e,t){var i,r=_.header?{}:[];for(i=0;i<e.length;i++){var n=i,s=e[i];_.header&&(n=i>=l.length?"__parsed_extra":l[i]),_.transform&&(s=_.transform(s,n)),s=y(n,s),"__parsed_extra"===n?(r[n]=r[n]||[],r[n].push(s)):r[n]=s}return _.header&&(i>l.length?k("FieldMismatch","TooManyFields","Too many fields: expected "+l.length+" fields but parsed "+i,f+t):i<l.length&&k("FieldMismatch","TooFewFields","Too few fields: expected "+l.length+" fields but parsed "+i,f+t)),r}var t=1;!c.data.length||Array.isArray(c.data[0])?(c.data=c.data.map(e),t=c.data.length):c.data=e(c.data,0);_.header&&c.meta&&(c.meta.fields=l);return f+=t,c}()}function m(){return _.header&&0===l.length}function y(e,t){return i=e,_.dynamicTypingFunction&&void 0===_.dynamicTyping[i]&&(_.dynamicTyping[i]=_.dynamicTypingFunction(i)),!0===(_.dynamicTyping[i]||_.dynamicTyping)?"true"===t||"TRUE"===t||"false"!==t&&"FALSE"!==t&&(function(e){if(s.test(e)){var t=parseFloat(e);if(n<t&&t<r)return!0}return!1}(t)?parseFloat(t):u.test(t)?new Date(t):""===t?null:t):t;var i}function k(e,t,i,r){var n={type:e,code:t,message:i};void 0!==r&&(n.row=r),c.errors.push(n)}this.parse=function(e,t,i){var r=_.quoteChar||'"';if(_.newline||(_.newline=function(e,t){e=e.substring(0,1048576);var i=new RegExp(U(t)+"([^]*?)"+U(t),"gm"),r=(e=e.replace(i,"")).split("\r"),n=e.split("\n"),s=1<n.length&&n[0].length<r[0].length;if(1===r.length||s)return"\n";for(var a=0,o=0;o<r.length;o++)"\n"===r[o][0]&&a++;return a>=r.length/2?"\r\n":"\r"}(e,r)),h=!1,_.delimiter)q(_.delimiter)&&(_.delimiter=_.delimiter(e),c.meta.delimiter=_.delimiter);else{var n=function(e,t,i,r,n){var s,a,o,h;n=n||[",","\t","|",";",b.RECORD_SEP,b.UNIT_SEP];for(var u=0;u<n.length;u++){var f=n[u],d=0,l=0,c=0;o=void 0;for(var p=new E({comments:r,delimiter:f,newline:t,preview:10}).parse(e),g=0;g<p.data.length;g++)if(i&&v(p.data[g]))c++;else{var m=p.data[g].length;l+=m,void 0!==o?0<m&&(d+=Math.abs(m-o),o=m):o=m}0<p.data.length&&(l/=p.data.length-c),(void 0===a||d<=a)&&(void 0===h||h<l)&&1.99<l&&(a=d,s=f,h=l)}return{successful:!!(_.delimiter=s),bestDelimiter:s}}(e,_.newline,_.skipEmptyLines,_.comments,_.delimitersToGuess);n.successful?_.delimiter=n.bestDelimiter:(h=!0,_.delimiter=b.DefaultDelimiter),c.meta.delimiter=_.delimiter}var s=w(_);return _.preview&&_.header&&s.preview++,a=e,o=new E(s),c=o.parse(a,t,i),g(),d?{meta:{paused:!0}}:c||{meta:{paused:!1}}},this.paused=function(){return d},this.pause=function(){d=!0,o.abort(),a=q(_.chunk)?"":a.substring(o.getCharIndex())},this.resume=function(){t.streamer._halted?(d=!1,t.streamer.parseChunk(a,!0)):setTimeout(this.resume,3)},this.aborted=function(){return e},this.abort=function(){e=!0,o.abort(),c.meta.aborted=!0,q(_.complete)&&_.complete(c),a=""}}function U(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function E(e){var O,D=(e=e||{}).delimiter,I=e.newline,T=e.comments,A=e.step,L=e.preview,F=e.fastMode,z=O=void 0===e.quoteChar?'"':e.quoteChar;if(void 0!==e.escapeChar&&(z=e.escapeChar),("string"!=typeof D||-1<b.BAD_DELIMITERS.indexOf(D))&&(D=","),T===D)throw new Error("Comment character same as delimiter");!0===T?T="#":("string"!=typeof T||-1<b.BAD_DELIMITERS.indexOf(T))&&(T=!1),"\n"!==I&&"\r"!==I&&"\r\n"!==I&&(I="\n");var M=0,j=!1;this.parse=function(a,t,i){if("string"!=typeof a)throw new Error("Input must be a string");var r=a.length,e=D.length,n=I.length,s=T.length,o=q(A),h=[],u=[],f=[],d=M=0;if(!a)return R();if(F||!1!==F&&-1===a.indexOf(O)){for(var l=a.split(I),c=0;c<l.length;c++){if(f=l[c],M+=f.length,c!==l.length-1)M+=I.length;else if(i)return R();if(!T||f.substring(0,s)!==T){if(o){if(h=[],b(f.split(D)),S(),j)return R()}else b(f.split(D));if(L&&L<=c)return h=h.slice(0,L),R(!0)}}return R()}for(var p=a.indexOf(D,M),g=a.indexOf(I,M),m=new RegExp(U(z)+U(O),"g"),_=a.indexOf(O,M);;)if(a[M]!==O)if(T&&0===f.length&&a.substring(M,M+s)===T){if(-1===g)return R();M=g+n,g=a.indexOf(I,M),p=a.indexOf(D,M)}else{if(-1!==p&&(p<g||-1===g)){if(!(p<_)){f.push(a.substring(M,p)),M=p+e,p=a.indexOf(D,M);continue}var v=x(p,_,g);if(v&&void 0!==v.nextDelim){p=v.nextDelim,_=v.quoteSearch,f.push(a.substring(M,p)),M=p+e,p=a.indexOf(D,M);continue}}if(-1===g)break;if(f.push(a.substring(M,g)),C(g+n),o&&(S(),j))return R();if(L&&h.length>=L)return R(!0)}else for(_=M,M++;;){if(-1===(_=a.indexOf(O,_+1)))return i||u.push({type:"Quotes",code:"MissingQuotes",message:"Quoted field unterminated",row:h.length,index:M}),w();if(_===r-1)return w(a.substring(M,_).replace(m,O));if(O!==z||a[_+1]!==z){if(O===z||0===_||a[_-1]!==z){-1!==p&&p<_+1&&(p=a.indexOf(D,_+1)),-1!==g&&g<_+1&&(g=a.indexOf(I,_+1));var y=E(-1===g?p:Math.min(p,g));if(a[_+1+y]===D){f.push(a.substring(M,_).replace(m,O)),a[M=_+1+y+e]!==O&&(_=a.indexOf(O,M)),p=a.indexOf(D,M),g=a.indexOf(I,M);break}var k=E(g);if(a.substring(_+1+k,_+1+k+n)===I){if(f.push(a.substring(M,_).replace(m,O)),C(_+1+k+n),p=a.indexOf(D,M),_=a.indexOf(O,M),o&&(S(),j))return R();if(L&&h.length>=L)return R(!0);break}u.push({type:"Quotes",code:"InvalidQuotes",message:"Trailing quote on quoted field is malformed",row:h.length,index:M}),_++}}else _++}return w();function b(e){h.push(e),d=M}function E(e){var t=0;if(-1!==e){var i=a.substring(_+1,e);i&&""===i.trim()&&(t=i.length)}return t}function w(e){return i||(void 0===e&&(e=a.substring(M)),f.push(e),M=r,b(f),o&&S()),R()}function C(e){M=e,b(f),f=[],g=a.indexOf(I,M)}function R(e){return{data:h,errors:u,meta:{delimiter:D,linebreak:I,aborted:j,truncated:!!e,cursor:d+(t||0)}}}function S(){A(R()),h=[],u=[]}function x(e,t,i){var r={nextDelim:void 0,quoteSearch:void 0},n=a.indexOf(O,t+1);if(t<e&&e<n&&(n<i||-1===i)){var s=a.indexOf(D,n);if(-1===s)return r;n<s&&(n=a.indexOf(O,n+1)),r=x(s,n,i)}else r={nextDelim:e,quoteSearch:t};return r}},this.abort=function(){j=!0},this.getCharIndex=function(){return M}}function m(e){var t=e.data,i=a[t.workerId],r=!1;if(t.error)i.userError(t.error,t.file);else if(t.results&&t.results.data){var n={abort:function(){r=!0,_(t.workerId,{data:[],errors:[],meta:{aborted:!0}})},pause:v,resume:v};if(q(i.userStep)){for(var s=0;s<t.results.data.length&&(i.userStep({data:t.results.data[s],errors:t.results.errors,meta:t.results.meta},n),!r);s++);delete t.results}else q(i.userChunk)&&(i.userChunk(t.results,n,t.file),delete t.results)}t.finished&&!r&&_(t.workerId,t.results)}function _(e,t){var i=a[e];q(i.userComplete)&&i.userComplete(t),i.terminate(),delete a[e]}function v(){throw new Error("Not implemented.")}function w(e){if("object"!=typeof e||null===e)return e;var t=Array.isArray(e)?[]:{};for(var i in e)t[i]=w(e[i]);return t}function y(e,t){return function(){e.apply(t,arguments)}}function q(e){return"function"==typeof e}return o&&(f.onmessage=function(e){var t=e.data;void 0===b.WORKER_ID&&t&&(b.WORKER_ID=t.workerId);if("string"==typeof t.input)f.postMessage({workerId:b.WORKER_ID,results:b.parse(t.input,t.config),finished:!0});else if(f.File&&t.input instanceof File||t.input instanceof Object){var i=b.parse(t.input,t.config);i&&f.postMessage({workerId:b.WORKER_ID,results:i,finished:!0})}}),(l.prototype=Object.create(u.prototype)).constructor=l,(c.prototype=Object.create(u.prototype)).constructor=c,(p.prototype=Object.create(p.prototype)).constructor=p,(g.prototype=Object.create(u.prototype)).constructor=g,b});
+
+/***/ }),
+
 /***/ "./node_modules/popper.js/dist/esm/popper.js":
 /*!***************************************************!*\
   !*** ./node_modules/popper.js/dist/esm/popper.js ***!
@@ -97894,6 +98318,743 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js":
 /*!*************************************************************************!*\
   !*** ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js ***!
@@ -99811,6 +100972,213 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FileUpload.vue?vue&type=template&id=79820e70&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FileUpload.vue?vue&type=template&id=79820e70&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-5 text-center" },
+        [
+          _c(
+            "el-upload",
+            {
+              staticClass: "upload-demo",
+              attrs: {
+                action: "/upload",
+                name: "file_upload",
+                data: { _token: _vm.csrf },
+                "on-preview": _vm.handlePreview,
+                "on-remove": _vm.handleRemove,
+                "on-change": _vm.handleChange,
+                "on-success": _vm.handleSuccess,
+                "file-list": _vm.fileList,
+                "list-type": "picture"
+              }
+            },
+            [
+              _c("el-button", { attrs: { size: "small", type: "primary" } }, [
+                _vm._v("Click to upload")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "el-upload__tip",
+                  attrs: { slot: "tip" },
+                  slot: "tip"
+                },
+                [_vm._v("jpg/png files with a size less than 500kb")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-7" },
+        [
+          _c("el-alert", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.errors.success,
+                expression: "errors.success"
+              }
+            ],
+            attrs: {
+              title:
+                "Success! Your file has been uploaded. Use the Template tab to work with your files.",
+              type: "success"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-alert", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.errors.error,
+                expression: "errors.error"
+              }
+            ],
+            attrs: {
+              title: "Error! Your item could not be uploaded. Try again.",
+              type: "error"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-alert", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.errors.invalid,
+                expression: "errors.invalid"
+              }
+            ],
+            attrs: { title: "Invalid file type uploaded.", type: "warning" }
+          })
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Templates.vue?vue&type=template&id=240b28de&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Templates.vue?vue&type=template&id=240b28de&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("h3", [_vm._v(_vm._s(_vm.returnIntro))]),
+        _vm._v(" "),
+        _c("h6", [
+          _vm._v(
+            "Additional options and settings here. Also the final export button."
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-6" },
+        [
+          _c(
+            "el-dropdown",
+            { on: { command: _vm.hasCommand } },
+            [
+              _c("span", { staticClass: "el-dropdown-link" }, [
+                _vm._v("\n              Selectable saved files"),
+                _c("i", { staticClass: "el-icon-arrow-down el-icon--right" })
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-dropdown-menu",
+                { attrs: { slot: "dropdown" }, slot: "dropdown" },
+                _vm._l(_vm.storedFileUrls, function(url, index) {
+                  return _c(
+                    "el-dropdown-item",
+                    { key: index, attrs: { command: url } },
+                    [_vm._v(_vm._s(url))]
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("el-alert", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.meta.success,
+                expression: "meta.success"
+              }
+            ],
+            staticClass: "mt-3",
+            attrs: {
+              title:
+                "File has generated a total of " + _vm.meta.total + " events",
+              type: "success",
+              "close-text": "Gotcha"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _vm._v("\n            Live template here ...\n        ")
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -111910,6 +113278,1076 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/vuex/dist/vuex.esm.js":
+/*!********************************************!*\
+  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
+  \********************************************/
+/*! exports provided: default, Store, install, mapState, mapMutations, mapGetters, mapActions, createNamespacedHelpers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/**
+ * vuex v3.1.2
+ * (c) 2019 Evan You
+ * @license MIT
+ */
+function applyMixin (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+}
+
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
+}
+
+// Base data struct for store's module, package with some attribute and method
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  // Store some children item
+  this._children = Object.create(null);
+  // Store the origin module object which passed by programmer
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+
+  // Store the origin module's state
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors = { namespaced: { configurable: true } };
+
+prototypeAccessors.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+  this._makeLocalGettersCache = Object.create(null);
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  var state = this._modules.root.state;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
+  if (useDevtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors$1 = { state: { configurable: true } };
+
+prototypeAccessors$1.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors$1.state.set = function (v) {
+  if (true) {
+    assert(false, "use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+     true &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  try {
+    this._actionSubscribers
+      .filter(function (sub) { return sub.before; })
+      .forEach(function (sub) { return sub.before(action, this$1.state); });
+  } catch (e) {
+    if (true) {
+      console.warn("[vuex] error in before action subscribers: ");
+      console.error(e);
+    }
+  }
+
+  var result = entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload);
+
+  return result.then(function (res) {
+    try {
+      this$1._actionSubscribers
+        .filter(function (sub) { return sub.after; })
+        .forEach(function (sub) { return sub.after(action, this$1.state); });
+    } catch (e) {
+      if (true) {
+        console.warn("[vuex] error in after action subscribers: ");
+        console.error(e);
+      }
+    }
+    return res
+  })
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  return genericSubscribe(fn, this._subscribers)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn) {
+  var subs = typeof fn === 'function' ? { before: fn } : fn;
+  return genericSubscribe(subs, this._actionSubscribers)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+
+function genericSubscribe (fn, subs) {
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  // reset local getters cache
+  store._makeLocalGettersCache = Object.create(null);
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure environment.
+    computed[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    if (store._modulesNamespaceMap[namespace] && "development" !== 'production') {
+      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
+    }
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      if (true) {
+        if (moduleName in parentState) {
+          console.warn(
+            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
+          );
+        }
+      }
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  if (!store._makeLocalGettersCache[namespace]) {
+    var gettersProxy = {};
+    var splitPos = namespace.length;
+    Object.keys(store.getters).forEach(function (type) {
+      // skip if the target getter is not match this namespace
+      if (type.slice(0, splitPos) !== namespace) { return }
+
+      // extract local getter type
+      var localType = type.slice(splitPos);
+
+      // Add a port to the getters proxy.
+      // Define as getter property because
+      // we do not want to evaluate the getters in this time.
+      Object.defineProperty(gettersProxy, localType, {
+        get: function () { return store.getters[type]; },
+        enumerable: true
+      });
+    });
+    store._makeLocalGettersCache[namespace] = gettersProxy;
+  }
+
+  return store._makeLocalGettersCache[namespace]
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+/**
+ * Reduce the code which written in Vue.js for getting the state.
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
+ * @param {Object}
+ */
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  if ( true && !isValidMap(states)) {
+    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for committing the mutation
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  if ( true && !isValidMap(mutations)) {
+    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // Get the commit method from store
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for getting the getters
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} getters
+ * @return {Object}
+ */
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  if ( true && !isValidMap(getters)) {
+    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    // The namespace has been mutated by normalizeNamespace
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ( true && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for dispatch the action
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  if ( true && !isValidMap(actions)) {
+    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // get dispatch function from store
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
+ * @param {String} namespace
+ * @return {Object}
+ */
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+/**
+ * Normalize the map
+ * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
+ * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
+ * @param {Array|Object} map
+ * @return {Object}
+ */
+function normalizeMap (map) {
+  if (!isValidMap(map)) {
+    return []
+  }
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+/**
+ * Validate whether given map is valid or not
+ * @param {*} map
+ * @return {Boolean}
+ */
+function isValidMap (map) {
+  return Array.isArray(map) || isObject(map)
+}
+
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+/**
+ * Search a special module from store by namespace. if module not exist, print error message.
+ * @param {Object} store
+ * @param {String} helper
+ * @param {String} namespace
+ * @return {Object}
+ */
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ( true && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.1.2',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index_esm);
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -111982,7 +114420,9 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue"
+	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue",
+	"./components/FileUpload.vue": "./resources/js/components/FileUpload.vue",
+	"./components/Templates.vue": "./resources/js/components/Templates.vue"
 };
 
 
@@ -112020,6 +114460,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(element_ui__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! element-ui/lib/theme-chalk/index.css */ "./node_modules/element-ui/lib/theme-chalk/index.css");
 /* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -112053,7 +114494,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 /* Add the ELement UI Library*/
 
 Vue.use(element_ui__WEBPACK_IMPORTED_MODULE_0___default.a);
+
 var app = new Vue({
+  store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
   el: '#app'
 });
 
@@ -112170,6 +114613,238 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/FileUpload.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/FileUpload.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FileUpload_vue_vue_type_template_id_79820e70_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FileUpload.vue?vue&type=template&id=79820e70&scoped=true& */ "./resources/js/components/FileUpload.vue?vue&type=template&id=79820e70&scoped=true&");
+/* harmony import */ var _FileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FileUpload.vue?vue&type=script&lang=js& */ "./resources/js/components/FileUpload.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FileUpload_vue_vue_type_template_id_79820e70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FileUpload_vue_vue_type_template_id_79820e70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "79820e70",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/FileUpload.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/FileUpload.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/FileUpload.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FileUpload.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FileUpload.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FileUpload.vue?vue&type=template&id=79820e70&scoped=true&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/FileUpload.vue?vue&type=template&id=79820e70&scoped=true& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUpload_vue_vue_type_template_id_79820e70_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FileUpload.vue?vue&type=template&id=79820e70&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FileUpload.vue?vue&type=template&id=79820e70&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUpload_vue_vue_type_template_id_79820e70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUpload_vue_vue_type_template_id_79820e70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Templates.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Templates.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Templates_vue_vue_type_template_id_240b28de_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Templates.vue?vue&type=template&id=240b28de&scoped=true& */ "./resources/js/components/Templates.vue?vue&type=template&id=240b28de&scoped=true&");
+/* harmony import */ var _Templates_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Templates.vue?vue&type=script&lang=js& */ "./resources/js/components/Templates.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Templates_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Templates_vue_vue_type_template_id_240b28de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Templates_vue_vue_type_template_id_240b28de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "240b28de",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Templates.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Templates.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Templates.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Templates_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Templates.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Templates.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Templates_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Templates.vue?vue&type=template&id=240b28de&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Templates.vue?vue&type=template&id=240b28de&scoped=true& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Templates_vue_vue_type_template_id_240b28de_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Templates.vue?vue&type=template&id=240b28de&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Templates.vue?vue&type=template&id=240b28de&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Templates_vue_vue_type_template_id_240b28de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Templates_vue_vue_type_template_id_240b28de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store.js":
+/*!*******************************!*\
+  !*** ./resources/js/store.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var element_ui_src_locale_lang_el__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! element-ui/src/locale/lang/el */ "./node_modules/element-ui/src/locale/lang/el.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
+  state: {
+    intro: 'Welcome to templates',
+    storedUploads: []
+  },
+  getters: {
+    returnIntro: function returnIntro(state) {
+      return state.intro;
+    },
+    returnAllStoredCsvUploadUrls: function returnAllStoredCsvUploadUrls(state) {
+      console.warn('returnAllStoredCsvUploadUrls');
+      return state.storedUploads;
+    }
+  },
+  mutations: {
+    storeNewFileDetails: function storeNewFileDetails(state, payload) {
+      console.log('storeNewFileDetails');
+      console.log(payload.details);
+      state.storedUploads.push(payload.details);
+    },
+    queueCsvTemplateFiles: function queueCsvTemplateFiles(state, payload) {
+      /*
+      * baseUrl String
+      * files Array
+      * */
+      console.log('Mutation: queueCsvTemplateFiles', payload);
+      state.storedUploads = payload.files.map(function (el) {
+        return payload.baseUrl + el;
+      });
+    }
+  },
+  actions: {
+    storeNewFileDetails: function storeNewFileDetails(context, payload) {
+      context.commit('storeNewFileDetails', {
+        details: payload
+      });
+    },
+    queueCsvTemplateFiles: function queueCsvTemplateFiles(context) {
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/files');
+
+              case 2:
+                result = _context.sent;
+                context.commit("queueCsvTemplateFiles", result.data);
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
+}));
 
 /***/ }),
 
