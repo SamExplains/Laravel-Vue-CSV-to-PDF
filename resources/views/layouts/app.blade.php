@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -42,7 +43,7 @@
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Upload') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Template') }}</a>
+                            <a class="nav-link" href="{{ route('templates') }}">{{ __('Template') }}</a>
                         </li>
                         <!-- Authentication Links -->
 {{--                        @guest

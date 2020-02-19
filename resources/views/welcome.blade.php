@@ -69,7 +69,7 @@
                 <a href="{{ url('/home') }}">Upload</a>
             </div>
             <div class="top-right links">
-                <a href="{{ url('/home') }}">Template</a>
+                <a href="{{ url('/templates') }}">Template</a>
             </div>
 {{--            @if (Route::has('login'))
                 <div class="top-right links">

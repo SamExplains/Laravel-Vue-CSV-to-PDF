@@ -45,8 +45,8 @@ class FileUploadController extends Controller
         $fileExtension = $request->file_upload->getClientOriginalExtension();
         $imageName = Carbon::now()->timestamp . $request->file_upload->getClientOriginalName();
 
-        if ($fileExtension !== '.csv')
-            return response()->json(['status' => 400, 'message' => 'error. Invalid file type.', 'data' => $request->all()]);
+        if ($fileExtension !== 'csv')
+            return response()->json(['status' => 400, 'message' => 'error. Invalid file type.', 'extension' => $fileExtension, 'data' => $request->all()]);
 
         if (Storage::disk('s3')->putFileAs('cvsreader', $request->file_upload, $imageName)) {
             $fileUrl = Storage::disk('s3')->url('cvsreader') . '/' . $imageName;
