@@ -15,7 +15,10 @@ class FileUploadController extends Controller
      */
     public function index()
     {
-        //
+        // Show all stored S3 files
+      $baseUrl = str_replace('csvreader', '', Storage::disk('s3')->url('csvreader'));
+      $allFiles = Storage::disk('s3')->allFiles('csvreader');
+      return response()->json(['status' => 201, 'message' => 'success', 'baseUrl' => $baseUrl, 'files' => $allFiles]);
     }
 
     /**
@@ -48,8 +51,8 @@ class FileUploadController extends Controller
         if ($fileExtension !== 'csv')
             return response()->json(['status' => 400, 'message' => 'error. Invalid file type.', 'extension' => $fileExtension, 'data' => $request->all()]);
 
-        if (Storage::disk('s3')->putFileAs('cvsreader', $request->file_upload, $imageName)) {
-            $fileUrl = Storage::disk('s3')->url('cvsreader') . '/' . $imageName;
+        if (Storage::disk('s3')->putFileAs('csvreader', $request->file_upload, $imageName)) {
+            $fileUrl = Storage::disk('s3')->url('csvreader') . '/' . $imageName;
             return response()->json(['status' => 201, 'message' => 'Success. File was stored.', 'data' => [
                 'filename' => $imageName,
                 'url' => $fileUrl
