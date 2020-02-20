@@ -3754,6 +3754,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -101119,6 +101143,14 @@ var render = function() {
           _vm._v(
             "Additional options and settings here. Also the final export button."
           )
+        ]),
+        _vm._v(
+          "\n            Additional settings include Shapes, Background Title Shapes & SVG Paths and the Date background color\n          "
+        ),
+        _c("div", [
+          _vm._v(
+            "Also add a copy all information from this container button for easier and faster"
+          )
         ])
       ]),
       _vm._v(" "),
@@ -101173,7 +101205,44 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
-        _vm._v("\n            Live template here ...\n        ")
+        _vm._v("\n            Live template here ...\n\n          "),
+        _c(
+          "div",
+          { staticClass: "row mt-4" },
+          _vm._l(_vm.csvData, function(_event, index) {
+            return _c("div", { key: index, staticClass: "col-12 mb-3" }, [
+              _c("h4", [_vm._v(_vm._s(_event[0]))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_event[0]) + " – " + _vm._s(_event[4]))]),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid",
+                attrs: { src: _event[1], alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", [_vm._v("Date: ")]),
+                _vm._v(" " + _vm._s(_event[3]) + "\n                ")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", [_vm._v("Address: ")]),
+                _vm._v(" " + _vm._s(_event[2]) + "\n                ")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", [_vm._v("Price: ")]),
+                _vm._v(" " + _vm._s(_event[5]) + "\n                ")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", [_vm._v("Official Website: ")]),
+                _vm._v(" " + _vm._s(_event[6]) + "\n                ")
+              ])
+            ])
+          }),
+          0
+        )
       ])
     ])
   ])

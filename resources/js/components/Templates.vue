@@ -4,6 +4,9 @@
             <div class="col-12">
                 <h3>{{ returnIntro }}</h3>
                 <h6>Additional options and settings here. Also the final export button.</h6>
+                Additional settings include Shapes, Background Title Shapes & SVG Paths and the Date background color
+              <div>Also add a copy all information from this container button for easier and faster</div>
+
             </div>
             <div class="col-6">
               <el-dropdown @command="hasCommand">
@@ -26,6 +29,27 @@
             </div>
             <div class="col-6">
                 Live template here ...
+
+              <div class="row mt-4">
+                <div class="col-12 mb-3" v-for="(_event, index) in csvData" :key="index">
+                    <h4>{{ _event[0] }}</h4>
+                    <p>{{ _event[0] }} – {{ _event[4] }}</p>
+                    <img :src="_event[1]" class="img-fluid" alt="">
+                    <div>
+                      <span>Date: </span> {{ _event[3] }}
+                    </div>
+                    <div>
+                      <span>Address: </span> {{ _event[2] }}
+                    </div>
+                    <div>
+                      <span>Price: </span> {{ _event[5] }}
+                    </div>
+                    <div>
+                      <span>Official Website: </span> {{ _event[6] }}
+                    </div>
+                </div>
+              </div>
+
             </div>
         </div>
     </div>
