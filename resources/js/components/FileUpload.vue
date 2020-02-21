@@ -2,20 +2,23 @@
     <div class="container">
         <div class="row">
             <div class="col-5 text-center">
-                <el-upload
-                    class="upload-demo"
-                    action="/upload"
-                    name="file_upload"
-                    :data="{_token: csrf}"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    :on-change="handleChange"
-                    :on-success="handleSuccess"
-                    :file-list="fileList"
-                    list-type="picture">
-                    <el-button size="small" type="primary">Click to upload</el-button>
-                    <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
-                </el-upload>
+
+              <el-upload
+                class="upload-demo"
+                drag
+                :data="{_token: csrf}"
+                action="/upload"
+                name="file_upload"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-change="handleChange"
+                :on-success="handleSuccess"
+                :file-list="fileList"
+                multiple>
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
+                <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+              </el-upload>
             </div>
             <div class="col-7">
                 <el-alert v-show="errors.success"

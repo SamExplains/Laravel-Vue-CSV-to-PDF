@@ -27,12 +27,21 @@
               </el-alert>
 
             </div>
-            <div class="col-6">
-                Live template here ...
+          <div class="col-6 bg-white">
+            <div class="row p-2">
+              <div class="col-10 my-auto">
+                Event(s) template will be generated below
+              </div>
+              <div class="col-2">
+                <el-button class="copyToClipboard float-right" data-clipboard-action="copy" data-clipboard-target="#event_data">Copy</el-button>
+              </div>
+            </div>
+          </div>
+            <div class="col-6 offset-6 bg-white overflow-auto" style="max-height: 65vh">
 
-              <div class="row mt-4">
+              <div class="row mt-2" id="event_data">
                 <div class="col-12 mb-3" v-for="(_event, index) in csvData" :key="index">
-                    <h4>{{ _event[0] }}</h4>
+                    <code><h4>{{ _event[0] }}</h4></code>
                     <p>{{ _event[0] }} – {{ _event[4] }}</p>
                     <img :src="_event[1]" class="img-fluid" alt="">
                     <div>
@@ -57,6 +66,7 @@
 
 <script>
   import Papa from "papaparse";
+  import ClipboardJS from "clipboard"
   import { mapGetters, mapActions } from "vuex";
   export default {
     name: "Templates",
@@ -67,6 +77,7 @@
         csvUrl: null,
         csvData: null,
         storedFileUrls: null,
+        copyFrom: new ClipboardJS('.copyToClipboard'),
         meta: {
           success: false,
           total: 0
