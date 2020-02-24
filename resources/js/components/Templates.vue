@@ -16,12 +16,14 @@
             show-stops>
           </el-slider>
 
+          <span class="demonstration font-weight-bold">Highlight Color</span>
           <div class="color-picker"></div>
 
         </div>
 
       </div>
-      <div class="col-6">
+      <div class="col-6 mt-2">
+        <span class="demonstration font-weight-bold d-block">Stored Event Files</span>
         <el-dropdown @command="hasCommand">
                 <span class="el-dropdown-link">
                   Selectable saved files<i class="el-icon-arrow-down el-icon--right"></i>
@@ -54,16 +56,22 @@
         </div>
       </div>
 
+      <!--WYSIWYG Editor-->
+      <div class="col-6 mt-2" id="example">
+        <froala :tag="'textarea'" :config="config" v-model="model">
+          <p>Hello</p>
+        </froala>
+      </div>
+
       <!--Generated Events Content-->
-      <div class="col-6 offset-6 bg-white overflow-auto" style="max-height: 65vh">
+      <div class="col-6 bg-white overflow-auto" style="max-height: 65vh">
 
         <div class="row mt-2" id="event_data">
           <div class="col-12 mb-3" v-for="(_event, index) in csvData" :key="index">
-            <!--<code><h4>{{ _event[0] }}</h4></code>-->
             <h4 class="variableTitle">
-              <span style="color: rgb(0, 0, 0); background-color: #FAC51C">️{{ _event[0] }}</span>
+              <span :style="{ 'backgroundColor': highlightColor }">️{{ _event[0] }}</span>
             </h4>
-            <p>{{ _event[0] }} – {{ _event[4] }}</p>
+            <div>{{ _event[0] }} – {{ _event[4] }}</div>
             <img :src="_event[1]" class="img-fluid w-50">
             <div>
               <span>Date: </span> <strong>{{ _event[3] }}</strong>
@@ -103,6 +111,7 @@
         // csvUrl: 'https://shiftdownbucket.s3-us-west-1.amazonaws.com/cvsreader/event-parser-demo.csv',
         // csvUrl: 'https://vue-cvs.dev/_uploads/event-parser-demo.csv',
         pickr: '',
+        highlightColor: '#FFC107',
         csvUrl: null,
         csvData: null,
         storedFileUrls: null,
@@ -111,7 +120,16 @@
         meta: {
           success: false,
           total: 0
-        }
+        },
+        config: {
+          events: {
+            'froalaEditor.initialized': function () {
+              console.log('initialized')
+            }
+          },
+          charCounterCount: true
+        },
+        model: 'Edit Your Content Here!'
       }
     },
     methods: {
@@ -141,6 +159,31 @@
             that.meta.total = results.data.length;
             that.meta.success = true;
             that.csvData = results.data;
+            that.model = results.data.forEach( _event => {
+                return `<div class="col-12 mb-3">
+                  <h4 class="variableTitle">
+                    <span :style="{ 'backgroundColor': highlightColor }">️${_event[0]}</span>
+                  </h4>
+                  <div>${_event[0]} – ${_event[4]}</div>
+                  <img :src="_event[1]" class="img-fluid w-50">
+                  <div>
+                    <span>Date: </span> <strong>${_event[3]}</strong>
+                  </div>
+                  <div>
+                    <span>Address: </span> ${_event[2]}
+                  </div>
+                  <div>
+                    <span>Price: </span> ${_event[5]}
+                  </div>
+                  <div>
+                    <span>Official Website: </span> ${_event[6]}
+                  </div>
+
+                  <hr>
+
+                </div>`
+              });
+            console.log(that.model);
           }
         });
       },
@@ -150,6 +193,9 @@
         const tagAndSize = `<h${ _updatedValue } class="variableTitle"></h${_updatedValue}`;
         $('.variableTitle').contents().unwrap().wrap(tagAndSize);
 
+      },
+      copyToEditor() {
+        this.model = 'Copied something'
       }
     },
     computed: {
@@ -159,8 +205,9 @@
       await this.queueCsvTemplateFiles();
       console.log('OK to retrieve');
       this.storedFileUrls = this.returnAllStoredCsvUploadUrls();
-      console.log('Stored File URLS', this.storedFileUrls)
-
+      console.log('Stored File URLS', this.storedFileUrls);
+    },
+    mounted(){
       this.pickr = Pickr.create({
         el: '.color-picker',
         theme: 'monolith', // or 'monolith', or 'nano'
@@ -192,17 +239,16 @@
           // Input / output Options
           interaction: {
             hex: true,
-            rgba: true,
-            hsla: true,
-            hsva: true,
-            cmyk: true,
             input: true,
-            clear: true,
-            save: true
+            clear: true
           }
         }
       });
 
+      this.pickr.on('change', (color, instance) => {
+        console.log('change', color.toHEXA().toString());
+        this.highlightColor = color.toHEXA().toString();
+      })
     }
   }
 </script>

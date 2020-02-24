@@ -26,10 +26,21 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import ElementUI from 'element-ui';
+// Import and use Vue Froala lib.
+import VueFroala from 'vue-froala-wysiwyg'
 import 'element-ui/lib/theme-chalk/index.css';
+require('froala-editor/js/froala_editor.pkgd.min.js');
+
+// Require Froala Editor css files.
+import('froala-editor/css/froala_editor.pkgd.min.css');
+import('froala-editor/css/froala_style.min.css');
+
 
 /* Add the ELement UI Library*/
 Vue.use(ElementUI);
+
+/* Add the Froala Library*/
+Vue.use(VueFroala);
 
 import store from "./store";
 const app = new Vue({
