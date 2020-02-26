@@ -67,8 +67,6 @@
         <div class="flex-center position-ref full-height">
             <div class="top-right links">
                 <a href="{{ url('/home') }}">Upload</a>
-            </div>
-            <div class="top-right links">
                 <a href="{{ url('/templates') }}">Template</a>
             </div>
 {{--            @if (Route::has('login'))
