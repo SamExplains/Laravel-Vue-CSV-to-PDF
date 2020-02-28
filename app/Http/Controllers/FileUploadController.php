@@ -22,6 +22,17 @@ class FileUploadController extends Controller
     }
 
     /**
+     * @param Request $request
+     */
+    public function delete(Request $request) {
+      if($request->filePath) {
+        Storage::disk('s3')->delete($request->filePath);
+        return response()->json(['success' => 200, 'sent' => $request->filePath]);
+      } else
+        return response()->json(['error' => 404]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -104,5 +115,6 @@ class FileUploadController extends Controller
     public function destroy($id)
     {
         //
+      return response()->json($id);
     }
 }

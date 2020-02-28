@@ -19,28 +19,15 @@
 
         <span class="demonstration font-weight-bold">Highlight Color</span>
         <div class="color-picker"></div>
-      </div>
-      <div class="col-6">
-        <!--Header template and Header dropdown-->
-        <span class="demonstration font-weight-bold d-block">Select a saved Header template</span>
-        <el-dropdown @command="hasCommand">
-                <span class="el-dropdown-link">
-                  Selectable saved Headers<i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item v-for="(lht, index) in localHeaderTemplates" :key="index">
-              <span v-html="lht"></span>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
 
-        <span class="demonstration font-weight-bold d-block mt-3">Save a new Header template</span>
-        <froala :tag="'textarea'" :config="config" v-model="headerTemplate" />
-        <el-button type="success" class="float-right mt-2">Save new Header</el-button>
+        <span class="demonstration font-weight-bold d-block mt-3">Use custom selectable header. Toggle to turn on</span>
+        <el-switch
+          v-model="toggleCustomHeader"
+          active-text="Use custom header"
+          inactive-text="Use default highlight">
+        </el-switch>
 
-      </div>
-      <div class="col-6 mt-2">
-        <span class="demonstration font-weight-bold d-block">Stored Event Files</span>
+        <span class="demonstration font-weight-bold d-block mt-3">Stored Event Files</span>
         <el-dropdown @command="hasCommand">
                 <span class="el-dropdown-link">
                   Selectable saved files<i class="el-icon-arrow-down el-icon--right"></i>
@@ -51,8 +38,8 @@
           </el-dropdown-menu>
         </el-dropdown>
 
-<!--        <span class="demonstration font-weight-bold d-block mt-2">Current selected file</span>-->
-<!--        <span v-show="selectedFile">{{selectedFile}} <el-button type="danger">Delete</el-button> </span>-->
+          <span class="demonstration font-weight-bold d-block mt-2">Current selected file</span>
+          <span v-show="selectedFile">{{selectedFile}} <el-button type="danger" @click="deleteFilePermanently">Delete current file</el-button> </span>
 
         <el-alert
           v-show="meta.success"
@@ -63,17 +50,36 @@
         </el-alert>
 
       </div>
-      <div class="col-6 bg-white">
-        <div class="row p-2">
-          <div class="col-10 my-auto">
-            Event(s) template will be generated below
-          </div>
-          <div class="col-2">
-            <el-button class="copyToClipboard float-right" data-clipboard-action="copy"
-                       data-clipboard-target="#event_data">Copy
-            </el-button>
-          </div>
-        </div>
+      <div class="col-6">
+        <!--Header template and Header dropdown-->
+        <span class="demonstration font-weight-bold d-block">Select a saved Header template</span>
+        <el-dropdown @command="hasCommandHeader">
+                <span class="el-dropdown-link">
+                  Selectable saved Headers<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(lht, index) in localHeaderTemplates" :key="index">
+              <span v-html="lht"></span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+
+        <span class="demonstration font-weight-bold d-block mt-3">Use a new Header template</span>
+
+        <el-alert v-show="errors.headerTemplateError"
+                  title="Error! There is no Header present."
+                  class="mb-2 mt-2"
+                  type="error">
+        </el-alert>
+
+        <el-alert v-show="errors.headerTemplateSuccess"
+                  title="Success! Your template was saved."
+                  type="success"
+                  class="mb-2 mt-2"
+                  close-text="Gotcha">
+        </el-alert>
+        <froala :tag="'textarea'" :config="config" v-model="headerTemplate" />
+
       </div>
 
       <!--WYSIWYG Editor-->
@@ -81,66 +87,57 @@
         <froala :tag="'textarea'" :config="config" v-model="model" />
       </div>
 
-      <!--Generated Events Content-->
-      <div class="col-6 bg-white overflow-auto" style="max-height: 65vh">
-
-        <div class="row mt-2" id="event_data">
-          <div class="col-12">
-            <section style="margin: 10px 0%; position: static; box-sizing: border-box;">
-              <section
-                style="display: inline-block; width: 100%; vertical-align: top; background-position: 50% 50%; background-repeat: no-repeat; background-size: cover; background-attachment: scroll; border-style: solid; border-width: 1px; border-radius: 0px; border-color: rgb(172, 210, 135); padding: 5px; background-image: url(&quot;https://statics.xiumi.us/stc/images/templates-assets/tpl-paper/image/d720c129dea17f9f7baa1550bd343e6d-sz_416721.jpg?x-oss-process=style/xmorient&quot;); box-sizing: border-box;">
-                <section style="position: static; box-sizing: border-box;">
-                  <section
-                    style="display: inline-block; width: 100%; vertical-align: top; border-width: 1px; border-radius: 0px; border-style: dashed; border-color: rgb(172, 210, 135); background-color: rgba(255, 255, 255, 0); box-sizing: border-box;">
-                    <section style="margin: 0px 0%; position: static; box-sizing: border-box;">
-                      <section
-                        style="font-size: 14px; color: rgb(106, 177, 17); line-height: 1.8; letter-spacing: 1.8px; padding: 0px 10px; box-sizing: border-box;">
-                        <p
-                          style="text-align: center; white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;">
-                          On that <strong style="box-sizing: border-box;"><span
-                          style="font-size: 17px; box-sizing: border-box;">spring</span></strong> day</p></section>
-                    </section>
-                    <section style="margin: 0px 0%; position: static; box-sizing: border-box;">
-                      <section
-                        style="font-size: 14px; color: rgb(106, 177, 17); line-height: 1.8; letter-spacing: 1.8px; padding: 0px 10px; box-sizing: border-box;">
-                        <p
-                          style="text-align: center; white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;">
-                          On that <strong style="box-sizing: border-box;"><span
-                          style="font-size: 17px; box-sizing: border-box;">spring</span></strong> day</p></section>
-                    </section>
-                  </section>
-                </section>
-              </section>
-            </section>
+      <div class="col-6 bg-white mt-2">
+        <div class="row p-2">
+          <div class="col-6 my-auto">
+            Event(s) template will be generated below
           </div>
-          <div class="col-12 mb-3" v-for="(_event, index) in csvData" :key="index">
-            <h4 class="variableTitle">
-              <span :style="{ 'backgroundColor': highlightColor }">️{{ _event[0] }}</span>
-            </h4>
-            <div>{{ _event[0] }} – {{ _event[4] }}</div>
-            <img :src="_event[1]" class="img-fluid w-50">
-            <div>
-              <!--Date-->
-              <span>日期: </span> <strong :style="{ 'backgroundColor': highlightColor }">{{ _event[3] }}</strong>
-            </div>
-            <div>
-              <!--Address-->
-              <span>地址: </span> {{ _event[2] }}
-            </div>
-            <div>
-              <!--Price-->
-              <span>价钱: </span> {{ _event[5] }}
-            </div>
-            <div>
-              <!--Official Website-->
-              <span>官方网站: </span> {{ _event[6] }}
-            </div>
+          <div class="col-6" v-show="selectedFile !== ''">
+            <el-button class="copyToClipboard float-right" data-clipboard-action="copy"
+                       data-clipboard-target="#event_data">Copy
+            </el-button>
+            <el-button class="copyToClipboard float-right mr-2" type="primary" @click="synchronizeEditor">Re-Synchronize
+            </el-button>
+          </div>
 
-            <hr>
+          <!--Generated Events Content-->
+          <div class="col-12 bg-white overflow-auto" style="max-height: 65vh">
+
+            <div class="row mt-2" id="event_data">
+              <div class="col-12 mb-3" v-for="(_event, index) in csvData" :key="index">
+                <div v-if="toggleCustomHeader">
+                  <span class="text-left d-block" v-html="replaceTitleOnCustomHeader(_event[0])"></span>
+                </div>
+                <h4 v-else class="variableTitle">
+                  <span :style="{ 'backgroundColor': highlightColor }">️{{ _event[0] }}</span>
+                </h4>
+                <div>"{{ _event[0] }}" – {{ _event[4] }}</div>
+                <img :src="_event[1]" class="img-fluid w-50">
+                <div>
+                  <!--Date-->
+                  <span>日期: </span> <strong :style="{ 'backgroundColor': highlightColor }">{{ _event[3] }}</strong>
+                </div>
+                <div>
+                  <!--Address-->
+                  <span>地址: </span> {{ _event[2] }}
+                </div>
+                <div>
+                  <!--Price-->
+                  <span>价钱: </span> {{ _event[5] }}
+                </div>
+                <div>
+                  <!--Official Website-->
+                  <span>官方网站: </span> {{ _event[6] }}
+                </div>
+
+                <hr>
+
+              </div>
+            </div>
 
           </div>
+
         </div>
-
       </div>
 
     </div>
@@ -152,6 +149,7 @@
   import ClipboardJS from "clipboard"
   import Pickr from '@simonwep/pickr';
   import * as $ from "jquery";
+  import uuidv4 from "uuid/v4";
   import {mapGetters, mapActions} from "vuex";
 
   export default {
@@ -162,7 +160,6 @@
         // csvUrl: 'https://vue-cvs.dev/_uploads/event-parser-demo.csv',
         pickr: '',
         highlightColor: '#FFC107',
-        csvUrl: null,
         csvData: null,
         storedFileUrls: null,
         selectedFile: '',
@@ -180,33 +177,13 @@
           },
           charCounterCount: true
         },
+        errors: {
+          headerTemplateError: false,
+          headerTemplateSuccess: false,
+        },
+        toggleCustomHeader: false,
         model: 'Edit Your Content Here!',
-        headerTemplate: `<section style="margin: 10px 0%; position: static; box-sizing: border-box;">
-          <section
-            style="display: inline-block; width: 100%; vertical-align: top; background-position: 50% 50%; background-repeat: no-repeat; background-size: cover; background-attachment: scroll; border-style: solid; border-width: 1px; border-radius: 0px; border-color: rgb(172, 210, 135); padding: 5px; background-image: url(&quot;https://statics.xiumi.us/stc/images/templates-assets/tpl-paper/image/d720c129dea17f9f7baa1550bd343e6d-sz_416721.jpg?x-oss-process=style/xmorient&quot;); box-sizing: border-box;">
-            <section style="position: static; box-sizing: border-box;">
-              <section
-                style="display: inline-block; width: 100%; vertical-align: top; border-width: 1px; border-radius: 0px; border-style: dashed; border-color: rgb(172, 210, 135); background-color: rgba(255, 255, 255, 0); box-sizing: border-box;">
-                <section style="margin: 0px 0%; position: static; box-sizing: border-box;">
-                  <section
-                    style="font-size: 14px; color: rgb(106, 177, 17); line-height: 1.8; letter-spacing: 1.8px; padding: 0px 10px; box-sizing: border-box;">
-                    <p
-                      style="text-align: center; white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;">
-                      On that <strong style="box-sizing: border-box;"><span
-                      style="font-size: 17px; box-sizing: border-box;">spring</span></strong> day</p></section>
-                </section>
-                <section style="margin: 0px 0%; position: static; box-sizing: border-box;">
-                  <section
-                    style="font-size: 14px; color: rgb(106, 177, 17); line-height: 1.8; letter-spacing: 1.8px; padding: 0px 10px; box-sizing: border-box;">
-                    <p
-                      style="text-align: center; white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;">
-                      On that <strong style="box-sizing: border-box;"><span
-                      style="font-size: 17px; box-sizing: border-box;">spring</span></strong> day</p></section>
-                </section>
-              </section>
-            </section>
-          </section>
-        </section>`,
+        headerTemplate: '<section style="box-sizing: border-box; font-style: normal; font-weight: 400; text-align: justify; font-size: 16px;"><section style="position: static; transform: rotate(0deg); -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); box-sizing: border-box;"><section style="text-align: center; margin: 10px 0%; position: static; box-sizing: border-box;"><section style="display: inline-block; width: auto; vertical-align: top; min-width: 10%; max-width: 100%; height: auto; background-position: 0% 0%; background-repeat: repeat; background-size: auto; background-attachment: scroll; border-style: solid; border-width: 1px; border-radius: 6px; border-color: rgb(62, 62, 62); overflow: hidden; box-shadow: rgb(0, 0, 0) 0px 0px 0px; background-image: url(&quot;https://statics.xiumi.us/stc/images/templates-assets/tpl-paper/image/d2e2a5ddebffcaea31012e371a7363ec-sz_351.png&quot;); box-sizing: border-box;"><section style="margin: 0px 0% 6px; position: static; box-sizing: border-box;"><section style="display: inline-block; width: auto; vertical-align: top; min-width: 10%; max-width: 100%; height: auto; border-style: solid; border-width: 5px; border-radius: 6px; border-color: rgb(255, 255, 255); box-shadow: rgb(0, 0, 0) 0px 1px 0px; background-color: rgb(255, 255, 255); overflow: hidden; box-sizing: border-box;"><section style="position: static; box-sizing: border-box;"><section style="display: inline-block; width: auto; vertical-align: top; min-width: 10%; max-width: 100%; height: auto; box-shadow: rgb(0, 0, 0) 0px 0px 0px; border-width: 0px; border-radius: 4px; border-style: none; border-color: rgb(62, 62, 62); overflow: hidden; background-color: rgb(216, 98, 34); box-sizing: border-box;"><section style="margin: 5px 0%; position: static; box-sizing: border-box;"><section style="text-align: justify; color: rgb(252, 242, 241); padding: 0px 20px; line-height: 1.6; letter-spacing: 0px; box-sizing: border-box;"><p style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;">Autumn Rain Indus leaves</p></section></section></section></section></section></section></section></section></section></section>',
         localHeaderTemplates: [
           `<section style="margin: 10px 0%; position: static; box-sizing: border-box;">
           <section
@@ -235,11 +212,11 @@
           </section>
         </section>`,
           `<section style="box-sizing: border-box; font-style: normal; font-weight: 400; text-align: justify; font-size: 16px;"><section style="position: static; transform: rotate(0deg); -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); box-sizing: border-box;"><section style="display: flex; flex-flow: row nowrap; margin: 10px 0%; position: static; box-sizing: border-box;"><section style="display: inline-block; vertical-align: top; width: auto; flex: 0 0 auto; align-self: stretch; min-width: 10%; max-width: 100%; height: auto; background-color: rgb(17, 112, 243); box-sizing: border-box;"><section style="margin: 6px 0% 0px; position: static; box-sizing: border-box;"><section style="font-size: 14px; color: rgb(255, 255, 255); line-height: 1; letter-spacing: 2px; padding: 0px 15px; box-sizing: border-box;"><p style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;">Epidemic Alert &nbsp;&nbsp;</strong><span style="font-size: 12px; box-sizing: border-box;">February 03, 2020</span></p></section></section></section><section style="display: inline-block; vertical-align: top; width: 30px; align-self: stretch; flex: 0 0 auto; height: auto; line-height: 0; letter-spacing: 0px; box-sizing: border-box;"><section style="text-align: left; margin: 0px 0%; justify-content: flex-start; position: static; box-sizing: border-box;"><section style="max-width: 100%; vertical-align: middle; display: inline-block; line-height: 0; width: 60%; height: auto; box-sizing: border-box;"><br></section></section></section></section></section></section>`
-        ]
+        ],
       }
     },
     methods: {
-      ...mapActions(['queueCsvTemplateFiles']),
+      ...mapActions(['queueCsvTemplateFiles', 'deleteStoredFile']),
       ...mapGetters(['returnAllStoredCsvUploadUrls']),
       hasCommand(command) {
         /*
@@ -268,11 +245,11 @@
             that.csvData = results.data;
             that.model = '';
             results.data.forEach( _event => {
-              console.log('Foreach Hihghlight Color is ', that.highlightColor)
+              const defaultHighlightedTitle = `<h4 class="variableTitle"><span style="background-color: ${that.highlightColor}">️${_event[0]}</span></h4>`;
+              const showCustomHeader = (that.toggleCustomHeader) ? that.replaceTitleOnCustomHeader(_event[0]) : defaultHighlightedTitle;
+              console.log('Foreach Hihghlight Color is ', that.highlightColor);
               that.model += `<div class="col-12 mb-3">
-                    <h4 class="variableTitle">
-                      <span style="background-color: ${that.highlightColor}">️${_event[0]}</span>
-                    </h4>
+                    ${showCustomHeader}
                     <div>${_event[0]} – ${_event[4]}</div>
                     <img src="${_event[1]}" class="img-fluid w-50">
                     <div>
@@ -304,6 +281,26 @@
       },
       copyToEditor() {
         this.model = 'Copied something'
+      },
+      hasCommandHeader() {
+        console.log('hasCommandHeader');
+      },
+      replaceTitleOnCustomHeader(_eventTitle) {
+        const _mutated =
+          `<p class="variableTitle" style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;">${_eventTitle}</strong></p>`;
+        return this.headerTemplate.slice().replace(/<p( *\w+=("[^"]*"|'[^']'|[^ >]))*>(.*)<\/p>/g, _mutated);
+      },
+      synchronizeEditor() {
+        this.parseCsvFile(this.selectedFile);
+      },
+      async deleteFilePermanently() {
+        const fileWithUrl = this.selectedFile;
+        const _file = this.selectedFile.slice().split('/');
+        const filePath = _file[3] + '/' + _file[4];
+        console.log('Component: deleteFilePermanently ', filePath);
+        await this.deleteStoredFile({fileWithUrl, filePath});
+        console.log('Dropdown updated');
+        this.storedFileUrls = this.returnAllStoredCsvUploadUrls();
       }
     },
     computed: {
@@ -311,7 +308,37 @@
     },
     watch: {
       headerTemplate: function () {
-      console.warn(this.headerTemplate);
+        console.log('Watching from headerTemplate');
+        console.warn(this.headerTemplate);
+        /*
+        * ✅ Check if the item is empty
+        * Grabs the current graphic inside the Froala box
+        * Add unique ID
+        * Dispatch element to Vuex to store
+        * */
+        if (this.headerTemplate === ''){
+          console.log('Header template is empty');
+          this.errors.headerTemplateError = true;
+          this.errors.headerTemplateSuccess = false;
+          return;
+        }
+        // Grab the element inside Floala
+        // This return a [object HTML Element]
+        // const _newHeader = $('.fr-view')[0].firstChild;
+        // Using model returns the String
+        const _newHeader = this.headerTemplate;
+
+        // Reset error alert
+        this.errors.headerTemplateError = false;
+        this.errors.headerTemplateSuccess = true;
+
+        // Generate and Update unique ID
+        // _newHeader.id = uuidv4();
+
+        // Dispatch element w/ID to Vuex
+        const mutated = _newHeader.substring(0,8) + ' id="' + uuidv4() + '"' + _newHeader.substring(8);
+        console.warn(mutated);
+        console.warn(mutated.replace(/<\/?p[^>]*>/, "HELLO WORLD!!"));
       }
     },
     async created() {
@@ -339,7 +366,6 @@
           }
         }
       });
-
       this.pickr.on('change', (color, instance) => {
         $('.pcr-button').css("color", color.toHEXA().toString());
         this.highlightColor = color.toHEXA().toString();
