@@ -48,6 +48,14 @@ import {mapActions} from "vuex";
     props: {
       _t: String
     },
+    created() {
+      // axios.post('https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=trnsl.1.1.20181015T003152Z.bc8c80f6208fa6b7.32cd199df945a6431743abbcc34f92d4c5632eb8').then( res => {
+      // axios.post("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20181015T003152Z.bc8c80f6208fa6b7.32cd199df945a6431743abbcc34f92d4c5632eb8&text='Hello and welcome'&lang=en-zh")
+      //   .then( res => {
+      //   console.log('Created');
+      //   console.log(res);
+      // })
+    },
     mounted(){
       console.warn(typeof this._t, ' ------ ', this._t);
     },

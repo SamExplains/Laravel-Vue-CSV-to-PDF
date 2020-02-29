@@ -64,7 +64,7 @@
 <!--          </el-dropdown-menu>-->
 <!--        </el-dropdown>-->
 
-        <span class="demonstration font-weight-bold d-block mb-3">Paste in a new Header template</span>
+        <span class="demonstration font-weight-bold d-block mb-3">Paste in a new Header template below</span>
 
         <el-alert v-show="errors.headerTemplateError"
                   title="Error! There is no Header present."
@@ -106,10 +106,10 @@
             <div class="row mt-2" id="event_data">
               <div class="col-12 mb-3" v-for="(_event, index) in csvData" :key="index">
                 <div v-if="toggleCustomHeader">
-                  <span class="text-left d-block" v-html="replaceTitleOnCustomHeader(_event[0])"></span>
+                  <span class="text-left d-block" v-html="replaceTitleOnCustomHeader(_event[0], index)"></span>
                 </div>
                 <h4 v-else class="variableTitle">
-                  <span :style="{ 'backgroundColor': highlightColor }">️{{ _event[0] }}</span>
+                  <span :style="{ 'backgroundColor': highlightColor }" :class="'tt'+index">️{{ translateText(_event[0], index)}}</span>
                 </h4>
                 <div>"{{ _event[0] }}" – {{ _event[4] }}</div>
                 <img :src="_event[1]" class="img-fluid w-50">
@@ -148,6 +148,7 @@
   import Papa from "papaparse";
   import ClipboardJS from "clipboard"
   import Pickr from '@simonwep/pickr';
+  import axios from "axios";
   import * as $ from "jquery";
   import {mapGetters, mapActions} from "vuex";
 
@@ -157,6 +158,10 @@
       return {
         // csvUrl: 'https://shiftdownbucket.s3-us-west-1.amazonaws.com/cvsreader/event-parser-demo.csv',
         // csvUrl: 'https://vue-cvs.dev/_uploads/event-parser-demo.csv',
+        yandex: {
+          baseUrl: "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20181015T003152Z.bc8c80f6208fa6b7.32cd199df945a6431743abbcc34f92d4c5632eb8&text=Hello and welcome",
+          lang: "&lang=en-zh"
+        },
         pickr: '',
         highlightColor: '#FFC107',
         csvData: null,
@@ -243,9 +248,10 @@
             that.meta.success = true;
             that.csvData = results.data;
             that.model = '';
-            results.data.forEach( _event => {
-              const defaultHighlightedTitle = `<h4 class="variableTitle"><span style="background-color: ${that.highlightColor}">️${_event[0]}</span></h4>`;
-              const showCustomHeader = (that.toggleCustomHeader) ? that.replaceTitleOnCustomHeader(_event[0]) : defaultHighlightedTitle;
+            results.data.forEach( (_event, index) => {
+              const defaultHighlightedTitle =
+                `<h4 class="variableTitle"><span class="tt${index}" style="background-color: ${that.highlightColor}">️${_event[0]}</span></h4>`;
+              const showCustomHeader = (that.toggleCustomHeader) ? that.replaceTitleOnCustomHeader(_event[0], index) : defaultHighlightedTitle;
               console.log('Foreach Hihghlight Color is ', that.highlightColor);
               that.model += `<div class="col-12 mb-3">
                     ${showCustomHeader}
@@ -284,9 +290,9 @@
       hasCommandHeader() {
         console.log('hasCommandHeader');
       },
-      replaceTitleOnCustomHeader(_eventTitle) {
+      replaceTitleOnCustomHeader(_eventTitle, index) {
         const _mutated =
-          `<p class="variableTitle" style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;">${_eventTitle}</strong></p>`;
+          `<p class="variableTitle" style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;" class="tt${index}">${this.translateText(_eventTitle, index)}</strong></p>`;
         return this.headerTemplate.slice().replace(/https/g, 'http').replace(/<p( *\w+=("[^"]*"|'[^']'|[^ >]))*>(.*)<\/p>/g, _mutated);
       },
       synchronizeEditor() {
@@ -300,6 +306,12 @@
         await this.deleteStoredFile({fileWithUrl, filePath});
         console.log('Dropdown updated');
         this.storedFileUrls = this.returnAllStoredCsvUploadUrls();
+      },
+      async translateText(text, index) {
+        axios.post(`${this.yandex.baseUrl}&text=${text}${this.yandex.lang}`).then( result => {
+          console.warn('Translated text is ', result.data.text[0]);
+          $(`.tt${index}`).text(result.data.text[0]);
+        })
       }
     },
     computed: {
