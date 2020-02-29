@@ -39,7 +39,7 @@
         </el-dropdown>
 
           <span class="demonstration font-weight-bold d-block mt-2">Current selected file</span>
-          <span v-show="selectedFile">{{selectedFile}} <el-button type="danger" @click="deleteFilePermanently">Delete current file</el-button> </span>
+          <span v-show="selectedFile">{{selectedFile.slice().split('/')[4]}} <el-button type="danger" @click="deleteFilePermanently">Delete current file</el-button> </span>
 
         <el-alert
           v-show="meta.success"
@@ -52,19 +52,19 @@
       </div>
       <div class="col-6">
         <!--Header template and Header dropdown-->
-        <span class="demonstration font-weight-bold d-block">Select a saved Header template</span>
-        <el-dropdown @command="hasCommandHeader">
-                <span class="el-dropdown-link">
-                  Selectable saved Headers<i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item v-for="(lht, index) in localHeaderTemplates" :key="index">
-              <span v-html="lht"></span>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+<!--        <span class="demonstration font-weight-bold d-block">Select a saved Header template</span>-->
+<!--        <el-dropdown @command="hasCommandHeader">-->
+<!--                <span class="el-dropdown-link">-->
+<!--                  Selectable saved Headers<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+<!--                </span>-->
+<!--          <el-dropdown-menu slot="dropdown">-->
+<!--            <el-dropdown-item v-for="(lht, index) in localHeaderTemplates" :key="index">-->
+<!--              <span v-html="lht"></span>-->
+<!--            </el-dropdown-item>-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
 
-        <span class="demonstration font-weight-bold d-block mt-3">Use a new Header template</span>
+        <span class="demonstration font-weight-bold d-block mb-3">Paste in a new Header template</span>
 
         <el-alert v-show="errors.headerTemplateError"
                   title="Error! There is no Header present."
@@ -75,7 +75,7 @@
         <el-alert v-show="errors.headerTemplateSuccess"
                   title="Success! Your template was saved."
                   type="success"
-                  class="mb-2 mt-2"
+                  class="mb-2 mt-3"
                   close-text="Gotcha">
         </el-alert>
         <froala :tag="'textarea'" :config="config" v-model="headerTemplate" />
@@ -149,7 +149,6 @@
   import ClipboardJS from "clipboard"
   import Pickr from '@simonwep/pickr';
   import * as $ from "jquery";
-  import uuidv4 from "uuid/v4";
   import {mapGetters, mapActions} from "vuex";
 
   export default {
@@ -288,7 +287,7 @@
       replaceTitleOnCustomHeader(_eventTitle) {
         const _mutated =
           `<p class="variableTitle" style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;">${_eventTitle}</strong></p>`;
-        return this.headerTemplate.slice().replace(/<p( *\w+=("[^"]*"|'[^']'|[^ >]))*>(.*)<\/p>/g, _mutated);
+        return this.headerTemplate.slice().replace(/https/g, 'http').replace(/<p( *\w+=("[^"]*"|'[^']'|[^ >]))*>(.*)<\/p>/g, _mutated);
       },
       synchronizeEditor() {
         this.parseCsvFile(this.selectedFile);
@@ -309,7 +308,6 @@
     watch: {
       headerTemplate: function () {
         console.log('Watching from headerTemplate');
-        console.warn(this.headerTemplate);
         /*
         * ✅ Check if the item is empty
         * Grabs the current graphic inside the Froala box
@@ -322,23 +320,12 @@
           this.errors.headerTemplateSuccess = false;
           return;
         }
-        // Grab the element inside Floala
-        // This return a [object HTML Element]
-        // const _newHeader = $('.fr-view')[0].firstChild;
-        // Using model returns the String
-        const _newHeader = this.headerTemplate;
+        // Update HTTPS to HTTP for pasted in templates
+        this.headerTemplate = this.headerTemplate.slice().replace(/https/g, 'http');
 
         // Reset error alert
         this.errors.headerTemplateError = false;
         this.errors.headerTemplateSuccess = true;
-
-        // Generate and Update unique ID
-        // _newHeader.id = uuidv4();
-
-        // Dispatch element w/ID to Vuex
-        const mutated = _newHeader.substring(0,8) + ' id="' + uuidv4() + '"' + _newHeader.substring(8);
-        console.warn(mutated);
-        console.warn(mutated.replace(/<\/?p[^>]*>/, "HELLO WORLD!!"));
       }
     },
     async created() {
