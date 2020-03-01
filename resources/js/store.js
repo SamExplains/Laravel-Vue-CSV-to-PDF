@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     intro: 'Welcome to templates',
-    storedUploads: []
+    storedUploads: [],
   },
   getters: {
     returnIntro: state => {
@@ -18,7 +18,6 @@ export default new Vuex.Store({
       console.warn('returnAllStoredCsvUploadUrls');
       return state.storedUploads;
     }
-
   },
   mutations: {
     storeNewFileDetails: (state, payload) => {
@@ -35,6 +34,14 @@ export default new Vuex.Store({
       state.storedUploads = payload.files.map( el => {
         return payload.baseUrl + el;
       })
+    },
+    deleteStoredFile: (state, payload) => {
+      /*
+      * Remove file from state array
+      * */
+      state.storedUploads = state.storedUploads.filter( el => {
+                              return el !== payload.fileWithUrl
+                            });
     }
   },
   actions: {
@@ -44,6 +51,10 @@ export default new Vuex.Store({
     async queueCsvTemplateFiles(context) {
       let result = await axios.get('/files');
       context.commit("queueCsvTemplateFiles", result.data);
+    },
+    deleteStoredFile: (context, payload) => {
+      axios.post('/delete', {filePath: payload.filePath});
+      context.commit('deleteStoredFile', {fileWithUrl: payload.fileWithUrl, filePath: payload.filePath})
     }
   }
 })

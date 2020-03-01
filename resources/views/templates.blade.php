@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-    <templates/>
+    <templates api_key="{{ config('yandex.api_key') }}"/>
 @endsection

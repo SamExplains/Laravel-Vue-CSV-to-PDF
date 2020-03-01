@@ -48,9 +48,6 @@ import {mapActions} from "vuex";
     props: {
       _t: String
     },
-    mounted(){
-      console.warn(typeof this._t, ' ------ ', this._t);
-    },
     data(){
       return {
         csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -76,14 +73,8 @@ import {mapActions} from "vuex";
       },
       handleSuccess(res) {
         console.log('handleSuccess');
-        console.log(res);
         switch (res.status) {
           case 201:
-            /*
-            * Store filename and file URL inside store for Templates page
-            * */
-            console.log(res.data.filename);
-            console.log(res.data.url);
             this.storeNewFileDetails({ filename: res.data.filename, url: res.data.url });
             this.errors.success = res.status === 201;
             break;
