@@ -109,9 +109,11 @@
                   <span class="text-left d-block" v-html="replaceTitleOnCustomHeader(_event[0], index)"></span>
                 </div>
                 <h4 v-else class="variableTitle">
-                  <span :style="{ 'backgroundColor': highlightColor }" :class="'tt'+index">️{{ translateText(_event[0], index)}}</span>
+                  <span :style="{ 'backgroundColor': highlightColor }" :class="'tt'+index">️{{ translateText(_event[0], index, 'title')}}</span>
                 </h4>
-                <div>"{{ _event[0] }}" – {{ _event[4] }}</div>
+                <div>"{{ _event[0] }}" –
+                  <span :class="'tb'+index">{{ translateText(_event[4], index, 'body')}}</span>
+                </div>
                 <img :src="_event[1]" class="img-fluid w-50">
                 <div>
                   <!--Date-->
@@ -154,12 +156,15 @@
 
   export default {
     name: "Templates",
+    props: {
+      api_key: String
+    },
     data() {
       return {
         // csvUrl: 'https://shiftdownbucket.s3-us-west-1.amazonaws.com/cvsreader/event-parser-demo.csv',
         // csvUrl: 'https://vue-cvs.dev/_uploads/event-parser-demo.csv',
         yandex: {
-          baseUrl: "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20181015T003152Z.bc8c80f6208fa6b7.32cd199df945a6431743abbcc34f92d4c5632eb8&text=Hello and welcome",
+          baseUrl: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${this.api_key}`,
           lang: "&lang=en-zh"
         },
         pickr: '',
@@ -176,7 +181,6 @@
         config: {
           events: {
             'froalaEditor.initialized': function () {
-              console.log('initialized')
             }
           },
           charCounterCount: true
@@ -238,8 +242,6 @@
         Papa.parse(_url, {
           download: true,
           complete: function (results) {
-            console.log(results.errors);
-            console.log(results.data);
             results.data.shift(); // Remove first element which is the header fields.
 
             /* TODO Convert the array to an Array of Objects */
@@ -252,10 +254,11 @@
               const defaultHighlightedTitle =
                 `<h4 class="variableTitle"><span class="tt${index}" style="background-color: ${that.highlightColor}">️${_event[0]}</span></h4>`;
               const showCustomHeader = (that.toggleCustomHeader) ? that.replaceTitleOnCustomHeader(_event[0], index) : defaultHighlightedTitle;
-              console.log('Foreach Hihghlight Color is ', that.highlightColor);
               that.model += `<div class="col-12 mb-3">
                     ${showCustomHeader}
-                    <div>${_event[0]} – ${_event[4]}</div>
+                    <div>${_event[0]} –
+                      <span class="tb${index}">${ that.translateText(_event[4], index, 'body')}</span>
+                    </div>
                     <img src="${_event[1]}" class="img-fluid w-50">
                     <div>
                       <span>日期: </span> <strong style="background-color: ${that.highlightColor}">${_event[3]}</strong>
@@ -278,7 +281,6 @@
         });
       },
       updateTitleSize(value) {
-        console.warn('updateTitleSize ', value);
         const _updatedValue = value === 0 ? 1 : value;
         const tagAndSize = `<h${ _updatedValue } class="variableTitle"></h${_updatedValue}`;
         $('.variableTitle').contents().unwrap().wrap(tagAndSize);
@@ -286,9 +288,6 @@
       },
       copyToEditor() {
         this.model = 'Copied something'
-      },
-      hasCommandHeader() {
-        console.log('hasCommandHeader');
       },
       replaceTitleOnCustomHeader(_eventTitle, index) {
         const _mutated =
@@ -302,15 +301,21 @@
         const fileWithUrl = this.selectedFile;
         const _file = this.selectedFile.slice().split('/');
         const filePath = _file[3] + '/' + _file[4];
-        console.log('Component: deleteFilePermanently ', filePath);
+
         await this.deleteStoredFile({fileWithUrl, filePath});
-        console.log('Dropdown updated');
+
         this.storedFileUrls = this.returnAllStoredCsvUploadUrls();
       },
-      async translateText(text, index) {
+      async translateText(text, index, titleOrBody) {
         axios.post(`${this.yandex.baseUrl}&text=${text}${this.yandex.lang}`).then( result => {
-          console.warn('Translated text is ', result.data.text[0]);
-          $(`.tt${index}`).text(result.data.text[0]);
+          switch(titleOrBody){
+            case 'title':
+              $(`.tt${index}`).text(result.data.text[0]);
+              break;
+            case 'body':
+              $(`.tb${index}`).text(result.data.text[0]);
+              break;
+          }
         })
       }
     },
@@ -319,7 +324,6 @@
     },
     watch: {
       headerTemplate: function () {
-        console.log('Watching from headerTemplate');
         /*
         * ✅ Check if the item is empty
         * Grabs the current graphic inside the Froala box
@@ -327,7 +331,6 @@
         * Dispatch element to Vuex to store
         * */
         if (this.headerTemplate === ''){
-          console.log('Header template is empty');
           this.errors.headerTemplateError = true;
           this.errors.headerTemplateSuccess = false;
           return;
@@ -342,9 +345,7 @@
     },
     async created() {
       await this.queueCsvTemplateFiles();
-      console.log('OK to retrieve');
       this.storedFileUrls = this.returnAllStoredCsvUploadUrls();
-      console.log('Stored File URLS', this.storedFileUrls);
     },
     mounted(){
       this.pickr = Pickr.create({
