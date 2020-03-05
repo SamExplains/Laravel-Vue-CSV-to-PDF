@@ -291,7 +291,7 @@
       },
       replaceTitleOnCustomHeader(_eventTitle, index) {
         const _mutated =
-          `<p class="variableTitle" style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;" class="tt${index}">${this.translateText(_eventTitle, index)}</strong></p>`;
+          `<p class="variableTitle" style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;" class="tt${index}">${this.translateText(_eventTitle, index, 'title')}</strong></p>`;
         return this.headerTemplate.slice().replace(/https/g, 'http').replace(/<p( *\w+=("[^"]*"|'[^']'|[^ >]))*>(.*)<\/p>/g, _mutated);
       },
       synchronizeEditor() {
